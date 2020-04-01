@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        body {
+            padding: 10px;
+        }
+
+        #accordionExample {
+            padding: 10px 0;
+            font-size: 0.7em;
+        }
+
+        #getBookListData {
+            padding: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .col-sm-3 {
+            padding-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<button type="button" class="btn btn-primary" id="getBookList">getBookList</button>
+
+<div class="accordion" id="accordionExample">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    api 응답
+                </button>
+            </h2>
+        </div>
+
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <pre id="getBookListData"></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="targetResult"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script>
+    var indexObj = {
+        init: function() {
+            indexObj.bind();
+        },
+        bind: function() {
+            $('#getBookList').off().on('click', indexObj.methods.getBookList);
+        },
+        methods: {
+            getBookList: function() {
+                $.ajax({
+                    type: 'get',
+                    url: '/api/getBookList',
+                    success: indexObj.callback.getBookList
+                });
+            }
+        },
+        callback: {
+            getBookList: function(data) {
+                console.log(data);
+                $('#getBookListData').text(JSON.stringify(data, null, 4));
+            }
+        }
+    };
+
+    indexObj.init();
+</script>
+</body>
+</html>
