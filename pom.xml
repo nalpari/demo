@@ -65,14 +65,9 @@
 	<build>
 		<plugins>
 			<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
 			<plugin>
 		      <!-- Build an executable JAR -->
 		      <groupId>org.Apache.maven.plugins</groupId>
@@ -83,7 +78,7 @@
 		          <manifest>
 		            <addClasspath>true</addClasspath>
 		            <classpathPrefix>lib/</classpathPrefix>
-		            <mainClass>kr.co.toptoptop.DemoApplication</mainClass>
+		            <mainClass>kr.co.toptoptop.ServletInitializer</mainClass>
 		          </manifest>
 		        </archive>
 		      </configuration>
